@@ -60,54 +60,6 @@
 <div class="login">
   <div class="main">
     <Layout>
-      <Layout noPadding justifyItems="center">
-        <img alt="logo" src={$organisation.logoUrl || Logo} />
-        <Heading>Sign in to {company}</Heading>
-      </Layout>
-      {#if loaded}
-        <GoogleButton />
-        <OIDCButton oidcIcon={$oidc.logo} oidcName={$oidc.name} />
-      {/if}
-      <Divider noGrid />
-      <Layout gap="XS" noPadding>
-        <Body size="S" textAlign="center">Sign in with email</Body>
-        <Input label="Email" bind:value={username} />
-        <Input
-          label="Password"
-          type="password"
-          on:change
-          bind:value={password}
-        />
-      </Layout>
-      <Layout gap="XS" noPadding>
-        <Button cta disabled={!username && !password} on:click={login}
-          >Sign in to {company}</Button
-        >
-        <ActionButton quiet on:click={() => $goto("./forgot")}>
-          Forgot password?
-        </ActionButton>
-        {#if multiTenancyEnabled && !cloud}
-          <ActionButton
-            quiet
-            on:click={() => {
-              admin.unload()
-              $goto("./org")
-            }}
-          >
-            Change organisation
-          </ActionButton>
-        {/if}
-      </Layout>
-      {#if cloud}
-        <Body size="xs" textAlign="center">
-          By using Budibase Cloud
-          <br />
-          you are agreeing to our
-          <Link href="https://budibase.com/eula" target="_blank"
-            >License Agreement</Link
-          >
-        </Body>
-      {/if}
     </Layout>
   </div>
 </div>
